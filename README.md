@@ -203,7 +203,7 @@ Xiaomi is the 3rd most-viewed brand (`view_xiaomi`: 737,611) but does not appear
 An interactive **Sankey diagram** was built using Plotly to visualize the flow of user events across the top business-critical patterns. The diagram maps weighted transitions between `view`, `cart`, and `purchase` events across brands, providing an intuitive view of where users enter and exit the conversion funnel.
 
 > The visualization is generated in the notebook via `plotly.graph_objects.Sankey` and is viewable interactively in Google Colab or any Jupyter environment.
-> ![Customer Journey Flow](sankey_visualization.html)
+> ![Customer Journey Flow](https://drive.google.com/file/d/14VlFcacq-g-Q8aotUfY-2PPffuvtvfqC/view?usp=sharing)
 
 ---
 
