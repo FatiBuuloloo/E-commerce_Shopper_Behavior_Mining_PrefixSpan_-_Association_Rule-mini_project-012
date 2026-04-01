@@ -6,13 +6,13 @@
 
 ## Project Overview
 
-In modern e-commerce, understanding **how** customers behave and not just **what** they buy is a critical competitive advantage. This project applies **Sequential Pattern Mining (SPM)** to raw e-commerce event logs to extract ordered behavioral patterns such as:
+In modern e-commerce, understanding how customers behave and not just what they buy is a critical competitive advantage. This project applies **Sequential Pattern Mining (SPM)** to raw e-commerce event logs to extract ordered behavioral patterns such as:
 
 - `view → cart → purchase`
 - `cart → view → (abandon)`
 - Repeated browsing loops before conversion
 
-By mining **~6 million user interaction events**, I discover statistically significant behavioral sequences and compute **confidence-based conversion rates** for each brand journey. The results are visualized through an interactive **Sankey diagram** to map the full customer flow.
+By mining ~6 million user interaction events, I discover statistically significant behavioral sequences and compute confidence-based conversion rates for each brand journey. The results are visualized through an interactive **Sankey diagram** to map the full customer flow.
 
 ---
 
@@ -35,7 +35,7 @@ Each sequence represents a user session encoded as an ordered list of `event_bra
 
 ### 1. Sequential Pattern Mining — PrefixSpan
 
-[PrefixSpan](https://github.com/chuanconggao/PrefixSpan-py) is a **projection-based** sequential pattern mining algorithm that efficiently discovers frequent ordered subsequences without candidate generation, making it ideal for large-scale datasets.
+[PrefixSpan](https://github.com/chuanconggao/PrefixSpan-py) is a projection-based sequential pattern mining algorithm that efficiently discovers frequent ordered subsequences without candidate generation, making it ideal for large-scale datasets.
 
 ```
 Input  : User event sequences  →  [view_samsung, cart_samsung, purchase_samsung]
@@ -60,7 +60,7 @@ This confidence score is interpreted as the **behavioral conversion rate**, whic
 
 ### Top Frequent Sequential Patterns
 
-The most dominant single-event patterns reveal **brand viewing dominance**:
+The most dominant single-event patterns reveal brand viewing dominance:
 
 | Rank | Pattern | Frequency |
 |---|---|---|
@@ -72,7 +72,7 @@ The most dominant single-event patterns reveal **brand viewing dominance**:
 | 6 | `view_apple → view_apple` | 791,250 |
 | 7 | `view_xiaomi` | 737,611 |
 
-> **Observation:** Samsung and Apple dominate the top browsing patterns. The high frequency of repeated `view → view` sequences indicates strong **consideration loops**, which means users repeatedly browse a brand before deciding.
+> **Observation:** Samsung and Apple dominate the top browsing patterns. The high frequency of repeated `view → view` sequences indicates strong consideration loops, which means users repeatedly browse a brand before deciding.
 
 ---
 
@@ -99,7 +99,7 @@ Filtering for patterns that involve `cart` or `purchase` reveals the most commer
 
 ### Conversion Rate Analysis
 
-Using association rule confidence, we compute the **behavioral conversion rate** for each sequential step:
+Using association rule confidence, we compute the behavioral conversion rate for each sequential step:
 
 | Pattern (Antecedent → Consequent) | Events | Conversion Rate |
 |---|---|---|
@@ -129,7 +129,7 @@ The most high-value, end-to-end customer journey discovered from the data is:
 view_samsung  →  cart_samsung  →  purchase_samsung
 ```
 
-This three-step path occurred **104,409 times** and represents the clearest signal of a high-intent buyer journey. Any intervention that accelerates this path directly drives revenue.
+This three-step path occurred 104,409 times and represents the clearest signal of a high-intent buyer journey. Any intervention that accelerates this path directly drives revenue.
 
 ---
 
@@ -140,7 +140,7 @@ The conversion rate jumps dramatically once a user adds an item to cart:
 - **View → Cart**: ~14% (Samsung), ~13.5% (Apple)
 - **Cart → Purchase**: **~56%** (Samsung)
 
-This means the cart stage is the most powerful momentum indicator. Once a user carts an item, they are more than **4× more likely** to purchase compared to someone who only viewed. Strategies to push users from `view` to `cart` will have the highest ROI.
+This means the cart stage is the most powerful momentum indicator. Once a user carts an item, they are more than 4× more likely to purchase compared to someone who only viewed. Strategies to push users from `view` to `cart` will have the highest ROI.
 
 **Recommended Actions:**
 - Use retargeting campaigns specifically for users in the `view` stage who haven't carted yet
@@ -150,7 +150,7 @@ This means the cart stage is the most powerful momentum indicator. Once a user c
 
 ### Insight 2: Cart Abandonment is a Browse-Back Loop
 
-The pattern `cart_samsung → view_samsung` has a confidence of **68.77%**, meaning that nearly 7 out of 10 users who add to cart will **return to browse again** rather than purchasing immediately. This "browse-back" behavior is a classic signal of **price sensitivity** or **comparison shopping**.
+The pattern `cart_samsung → view_samsung` has a confidence of **68.77%**, meaning that nearly 7 out of 10 users who add to cart will return to browse again rather than purchasing immediately. This "browse-back" behavior is a classic signal of price sensitivity or comparison shopping.
 
 **Recommended Actions:**
 - Implement cart abandonment email/notification sequences within 1–2 hours of the cart event
@@ -168,7 +168,7 @@ While Samsung leads in raw frequency across all event types, the view-to-purchas
 | Samsung | 1,285,599 | 149,358 | ~11.6% |
 | Apple | 1,002,335 | 121,635 | ~12.1% |
 
-Apple users show slightly **higher purchase intent per view**, suggesting a more decisive buyer persona with higher brand loyalty.
+Apple users show slightly higher purchase intent per view, suggesting a more decisive buyer persona with higher brand loyalty.
 
 **Recommended Actions:**
 - For Samsung: focus on reducing decision friction by providing more reviews, filter tools, comparison features
@@ -178,7 +178,7 @@ Apple users show slightly **higher purchase intent per view**, suggesting a more
 
 ### Insight 4: Repeat-View Behavior Signals Warm Audiences
 
-Patterns like `view_samsung → view_samsung → cart_samsung` (9.73% conversion) confirm that users who browse a brand repeatedly are **warming up** toward a purchase, even if their conversion rate per session looks low.
+Patterns like `view_samsung → view_samsung → cart_samsung` (9.73% conversion) confirm that users who browse a brand repeatedly are warming up toward a purchase, even if their conversion rate per session looks low.
 
 **Recommended Actions:**
 - Build a "frequent viewer" cohort for remarketing
@@ -189,7 +189,7 @@ Patterns like `view_samsung → view_samsung → cart_samsung` (9.73% conversion
 
 ### Insight 5: Xiaomi is Underperforming in the Funnel
 
-Xiaomi is the 3rd most-viewed brand (`view_xiaomi`: 737,611) but does not appear in the top business-critical patterns for cart or purchase, suggesting a significant **funnel drop-off** between awareness and action.
+Xiaomi is the 3rd most-viewed brand (`view_xiaomi`: 737,611) but does not appear in the top business-critical patterns for cart or purchase, suggesting a significant funnel drop-off between awareness and action.
 
 **Recommended Actions:**
 - Audit Xiaomi product pages for UX friction points
